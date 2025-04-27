@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+
+int main () {
+    int num2;
+    
+    cout << ("digite dois numeros reais");
+    cin >> num2;
+    
+    return 0;
+}
+-----------------------------------------------------------------------
+#include <studio.h>
+#include <stdlib.h>
+#include <iostream>
+using namespace std;
+int main () {
+    
+    char cat1 , cat2 , cat3;
+    cout >> "digite a 1 caracter \ ";
+    cin >> cat1;
+    cout >> "digite a 2 caracter \ ";
+    cin >> cat2;
+    cout >> "digite a caracter \ ";
+    cin >> cat2;
+    char >> int (cat3, cat2, cat1);
+    
+    return 0;
+}
+-----------------------------------------------------------
+#include <iostream>
+#include <stdio.h>
+using namespace std;
+
+int main () {
+    
+    int idade;
+   
+    float montante;
+    
+    long int conta;
+    
+    cout << "digite sua idade";
+    cin >> idade;
+    cout << "quanto gual o montante";
+    cin >> montante;
+    cout << "digite sua conta";
+    cin >> conta;
+    cout << " sua idade\ "  << idade;
+    cout << (" este é seu montante\ ") << montante;
+    cout << " sua conta\ " << conta;
+    
+    return 0;
+    
+}
