@@ -1,0 +1,96 @@
+# <iostream>
+using namespace std;
+
+int main() {
+    long long int barra;
+
+    cout << "Digite o código de barras: ";
+    cin >> barra;
+    
+    if (barra < 1000000000000 || barra > 9999999999999){
+        cout << "Código inválido! Deve conter 13 dígitos. " << endl;
+        
+    cout << "Digite o código de barras novamente: ";
+    cin >> barra;
+    
+    if (barra < 1000000000000 || barra > 9999999999999){
+        cout << "Código Inválido Digite o código de barras novamente: " << endl;
+    } else {
+
+    int N12 = (barra / 1000000000000) % 10;
+    int N11 = (barra / 100000000000) % 10;
+    int N10 = (barra / 10000000000) % 10;
+    int N9  = (barra / 1000000000) % 10;
+    int N8  = (barra / 100000000) % 10;
+    int N7  = (barra / 10000000) % 10;
+    int N6  = (barra / 1000000) % 10;
+    int N5  = (barra / 100000) % 10;include
+    int N4  = (barra / 10000) % 10;
+    int N3  = (barra / 1000) % 10;
+    int N2  = (barra / 100) % 10;
+    int N1  = (barra / 10) % 10;
+    int N0  = barra % 10; 
+    
+    int somaImpares = (N11 + N9 + N7 + N5 + N3 + N1) * 3; 
+    int somaPares = N12 + N10 + N8 + N6 + N4 + N2;
+    int total = somaImpares + somaPares;
+    
+    int mult10;
+    if (total % 10 == 0) {
+        mult10 = total;
+    } else {
+        mult10 = total + (10 - (total % 10));
+    }
+    
+    int digito = mult10 - total;
+    if (digito == 10) {
+        digito = 0;
+    }
+    
+    if (N0 == digito) {
+        cout << "Código Válido" << endl;
+    } else {
+        cout << "Código Inválido" << endl;
+    }
+  }
+    
+   } else {
+       
+    int N12 = (barra / 1000000000000) % 10;
+    int N11 = (barra / 100000000000) % 10;
+    int N10 = (barra / 10000000000) % 10;
+    int N9  = (barra / 1000000000) % 10;
+    int N8  = (barra / 100000000) % 10;
+    int N7  = (barra / 10000000) % 10;
+    int N6  = (barra / 1000000) % 10;
+    int N5  = (barra / 100000) % 10;
+    int N4  = (barra / 10000) % 10;
+    int N3  = (barra / 1000) % 10;
+    int N2  = (barra / 100) % 10;
+    int N1  = (barra / 10) % 10;
+    int N0  = barra % 10; 
+    
+    int somaImpares = (N11 + N9 + N7 + N5 + N3 + N1) * 3; 
+    int somaPares = N12 + N10 + N8 + N6 + N4 + N2;
+    int total = somaImpares + somaPares;
+    
+    int mult10;
+    if (total % 10 == 0) {
+        mult10 = total;
+    } else {
+        mult10 = total + (10 - (total % 10));
+    }
+    
+    int digito = mult10 - total;
+    if (digito == 10) {
+        digito = 0;
+    }
+    
+    if (N0 == digito) {
+        cout << "Código Válido" << endl;
+    } else {
+        cout << "Código Inválido" << endl;
+    }
+   }
+    return 0; 
+}
