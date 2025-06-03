@@ -1,0 +1,61 @@
+# Script para resumir vídeos do YouTube usando IA
+# Feito por alguém que está aprendendo :)
+
+from youtube_transcript_api import YouTubeTranscriptApi
+from transformers import pipeline
+import re
+
+# Função para extrair o ID do vídeo da URL
+def pegar_id(url):
+    partes = re.search(r"(?:v=|youtu\.be/)([\w\-]+)", url)
+    if partes:
+        return partes.group(1)
+    return None
+
+# Função que tenta pegar a transcrição do vídeo
+def pegar_transcricao(id_video):
+    try:
+        legendas = YouTubeTranscriptApi.get_transcript(id_video, languages=['pt', 'en'])
+        texto_completo = ""
+        for parte in legendas:
+            texto_completo += parte['text'] + " "
+        return texto_completo
+    except:
+        return None
+
+# Função que resume o texto usando modelo pré-treinado
+def gerar_resumo(texto):
+    resumidor = pipeline("summarization", model="facebook/bart-large-cnn")
+    pedaços = [texto[i:i+1000] for i in range(0, len(texto), 1000)]
+    resumo_final = ""
+
+    for parte in pedaços:
+        res = resumidor(parte, max_length=130, min_length=30, do_sample=False)
+        resumo_final += res[0]['summary_text'] + "\n"
+
+    return resumo_final
+
+# Parte principal do código
+def main():
+    print("Resumo de vídeo do YouTube usando IA :)")
+    url = input("Cole a URL do vídeo: ")
+    id_video = pegar_id(url)
+
+    if not id_video:
+        print("URL inválida.")
+        return
+
+    print("Buscando legenda...")
+    texto = pegar_transcricao(id_video)
+    if not texto:
+        print("Não foi possível pegar a transcrição do vídeo.")
+        return
+
+    print("Resumindo o conteúdo, aguarde...")
+    resumo = gerar_resumo(texto)
+
+    print("\n====== RESUMO DO VÍDEO ======\n")
+    print(resumo)
+
+if __name__ == "__main__":
+    main()
